@@ -13,7 +13,6 @@ async function checkAndCreateAlerts() {
       // Récupérer les paramètres de notification de l'utilisateur
       const settings = await Settings.findOne({ userId: user._id }).exec();
       let globalNotificationDays = settings ? settings.globalNotificationDays : 30;
-
       // Parcourir chaque service de l'utilisateur
       for (const service of user.services) {
         let notificationDays = globalNotificationDays;
