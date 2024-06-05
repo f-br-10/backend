@@ -20,6 +20,8 @@ async function fetchAndStoreReclamations() {
         try {
           // Récupérer la liste des réclamations OVH pour ce fournisseur
           const reclamationsList = await ovhInstance.requestPromised('GET', '/support/tickets');
+          if(!reclamationsList) continue;
+
 
           for (const ticket of reclamationsList) {
             try {

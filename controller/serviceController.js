@@ -5,20 +5,21 @@ const User = require('../model/UserModel.js');
 const { createOvhInstance }  = require('../ovhinit.js');
 const Fournisseur = require('../model/FournisseurModel.js');
 async function fetchAndStoreOvhServices() {
-  try {
+  try { 
     // Trouver tous les fournisseurs marqués comme OVH
-    const fournisseursOvh = await Fournisseur.find({ isOvh: true });
+    const fournisseursOvh = await Fournisseur.find({ isOvh: true } , { deleted: false });
     for (const fournisseur of fournisseursOvh) {
 
-      // Créer une instance OVH pour le fournisseur
+      // Créer une instance OVH pour le fournisseur 
       const ovhInstance = createOvhInstance(
         fournisseur.ovhApiKey,
         fournisseur.ovhSecret,
         fournisseur.ovhConsumerKey                    
-      );
+      ); 
 
       // Récupérer la liste des services OVH pour ce fournisseur
       const response = await ovhInstance.requestPromised('GET', '/service');
+      if(!response) continue;
 
       // Récupérer tous les services associés à ce fournisseur
       const allServices = await Service.find({ fournisseur: fournisseur._id });

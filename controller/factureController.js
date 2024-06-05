@@ -15,6 +15,8 @@ async function fetchAndStoreOvhBills() {
 
       // Récupérer la liste des factures OVH pour ce fournisseur
       const billsList = await ovhInstance.requestPromised('GET', '/me/bill');
+      if(!billsList) continue;
+
 
       // Traiter la réponse de l'API OVH
       for (const billId of billsList) {
