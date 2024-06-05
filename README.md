@@ -9,9 +9,6 @@ Ce projet backend permet la gestion des services cloud avec plusieurs fonctionna
 - [Technologies Utilisées](#technologies-utilisées)
 - [Installation](#installation)
 - [Utilisation](#utilisation)
-- [Contribuer](#contribuer)
-- [License](#license)
-- [Contact](#contact)
 
 ## Fonctionnalités
 
